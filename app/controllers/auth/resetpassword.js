@@ -35,7 +35,7 @@ const resetpassword = async (req, res) => {
       newpassword,
       bcrypt.genSaltSync(10)
     );
-    console.log(authcode);
+
     await usercollection.findByIdAndUpdate(userid, {
       password: newhashedpassword,
     });
