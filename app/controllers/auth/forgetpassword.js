@@ -1,5 +1,6 @@
 const crptojs = require("crypto-js");
 
+const { usercollection } = require("../../schemas/user.schema");
 const { forgetpasswordval } = require("./../../schemas/joischema/user.val");
 const { forgetpasswordcollection } = require("../../schemas/forgetpassword");
 const { smtp } = require("../../utilities/smtp");
