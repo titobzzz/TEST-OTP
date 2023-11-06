@@ -2,13 +2,13 @@ const Joi = require("joi");
 
 const loginval = Joi.object({
   username: Joi.string().required(),
-  password: Joi.string().min(6).max(40).required().alphanum(),
+  password: Joi.string().min(6).max(40).required(),
 });
 
 const registerval = Joi.object({
   username: Joi.string().required(),
   phonenumber: Joi.number().required(),
-  password: Joi.string().min(6).max(40).required().alphanum(),
+  password: Joi.string().min(6).max(40).required(),
 });
 
 const forgetpasswordval = Joi.object({
@@ -17,7 +17,7 @@ const forgetpasswordval = Joi.object({
 });
 
 const resetpasswordval = Joi.object({
-  newpassword: Joi.string().min(6).max(40).required().alphanum(),
+  newpassword: Joi.string().min(6).max(40).required(),
   token: Joi.string().required(),
 });
 
