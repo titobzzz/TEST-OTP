@@ -29,13 +29,13 @@ const resetpassword = async (req, res) => {
     );
     const decryptedtext = decrypted.toString(cryptojs.enc.Utf8);
 
-    const { email, authcode, userid } = decryptedtext.split(" ");
+    const [email, authcode, userid] = decryptedtext.split(" ");
 
     const newhashedpassword = bcrypt.hashSync(
       newpassword,
       bcrypt.genSaltSync(10)
     );
-
+    console.log(authcode);
     await usercollection.findByIdAndUpdate(userid, {
       password: newhashedpassword,
     });
