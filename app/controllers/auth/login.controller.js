@@ -13,7 +13,7 @@ const login = async (req, res) => {
     await loginval.validateAsync({ username, password });
 
     const userdetails = await usercollection
-      .findOne({ email })
+      .findOne({ username })
       .maxTimeMS(20000);
 
     if (!userdetails) {
