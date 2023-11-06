@@ -18,7 +18,7 @@ const forgetpasswordval = Joi.object({
 
 const resetpasswordval = Joi.object({
   newpassword: Joi.string().min(6).max(40).required(),
-  token: Joi.string().required(),
+  encrypted: Joi.string().required(),
 });
 
 module.exports = {

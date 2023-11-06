@@ -7,12 +7,12 @@ const { forgetpasswordcollection } = require("../../schemas/forgetpassword");
 
 const resetpassword = async (req, res) => {
   try {
-    const { newpassword, token } = req.body;
+    const { newpassword, encrypted } = req.body;
 
-    await resetpasswordval.validateAsync({ newpassword });
+    await resetpasswordval.validateAsync({ newpassword, encrypted });
 
     const user = await forgetpasswordcollection
-      .findOne({ token })
+      .findOne({ encrypted })
       .maxTimeMS(20000);
 
     if (!user) {
@@ -23,7 +23,10 @@ const resetpassword = async (req, res) => {
       });
     }
 
-    const decrypted = cryptojs.AES.decrypt(token, process.env.FORGETPASSWORD);
+    const decrypted = cryptojs.AES.decrypt(
+      encrypted,
+      process.env.FORGETPASSWORD
+    );
     const decryptedtext = decrypted.toString(cryptojs.enc.Utf8);
 
     const { email, authcode, userid } = decryptedtext.split(" ");
